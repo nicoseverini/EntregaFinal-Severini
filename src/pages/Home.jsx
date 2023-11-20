@@ -1,10 +1,9 @@
 import React from 'react';
-import { useAllProducts } from '../hooks/useProducts';
-import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
-import LoaderComponent from '../components/LoaderComponent/LoaderComponent';
+import { useAllProducts } from '../hooks';
+import { ItemListContainer, LoaderComponent } from '../components';
 
-const Home = () => {
-  const { products, loading } = useAllProducts(20); 
+export const Home = () => {
+  const { products, loading, error } = useAllProducts(20); 
 
   return (
     <>
@@ -12,11 +11,14 @@ const Home = () => {
         loading ? (
           <LoaderComponent />
         ) : (
-          <ItemListContainer products={products} />
+          error ? (
+            <div>Hubo un error</div>
+          ) : (
+            <ItemListContainer products={products} />
+          )
         )
       }
     </>
   );
-}
+};
 
-export default Home

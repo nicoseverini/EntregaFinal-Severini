@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
-import { useSingleCategory } from "../hooks/useCategories";
-import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
+import { useSingleCategory } from "../hooks";
+import { ItemListContainer, LoaderComponent } from "../components";
 
-const Category = () => {
+export const Category = () => {
   const { categoryId } = useParams();
   const { products, loading } = useSingleCategory(categoryId)
 
@@ -21,5 +20,3 @@ const Category = () => {
     
   );
 };
-
-export default Category;

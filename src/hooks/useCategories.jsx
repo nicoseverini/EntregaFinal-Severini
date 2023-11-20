@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllCategories, getSingleCategory } from "../services/ApiProducts";
+import { getAllCategories, getSingleCategory } from "../services";
 
 export const  useAllCategories = () => {
   const [categories, setCategories] = useState([]);

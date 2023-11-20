@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const ItemDetailContainer = ({ product }) => {
+export const ItemDetailContainer = ({ product }) => {
   return (
     <div
       style={{
@@ -25,4 +25,3 @@ const ItemDetailContainer = ({ product }) => {
   );
 };
 
-export default ItemDetailContainer;

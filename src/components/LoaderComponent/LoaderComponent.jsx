@@ -1,7 +1,7 @@
 import React from 'react'
 import { ring2 } from 'ldrs'
 
-const LoaderComponent = () => {
+export const LoaderComponent = () => {
   ring2.register()
   return (
     <div style={{display: 'flex', alignItems: "center", justifyContent: "center", width: "100vw", height: "100vh"}}>
@@ -17,5 +17,3 @@ const LoaderComponent = () => {
     
   )
 }
-
-export default LoaderComponent
