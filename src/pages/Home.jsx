@@ -1,13 +1,22 @@
 import React from 'react';
 import { useAllProducts } from '../hooks/useProducts';
 import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
+import LoaderComponent from '../components/LoaderComponent/LoaderComponent';
 
 const Home = () => {
-  const { products } = useAllProducts(20); 
+  const { products, loading } = useAllProducts(20); 
 
   return (
-    <ItemListContainer products={products} />
-  )
+    <>
+      {
+        loading ? (
+          <LoaderComponent />
+        ) : (
+          <ItemListContainer products={products} />
+        )
+      }
+    </>
+  );
 }
 
 export default Home

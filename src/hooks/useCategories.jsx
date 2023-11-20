@@ -15,12 +15,14 @@ export const  useAllCategories = () => {
 
 export const useSingleCategory = (categoryId) => {
   const [products, setProducts] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     getSingleCategory(categoryId)
       .then((res) => setProducts(res.data.products))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }, [categoryId]);
 
-  return { products };
+  return { products, loading };
 };
