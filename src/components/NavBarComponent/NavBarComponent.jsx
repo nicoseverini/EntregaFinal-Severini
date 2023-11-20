@@ -1,22 +1,13 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidgetComponent from "../CartWidgetComponent/CartWidgetComponent";
+import { useAllCategories } from "../../hooks/useCategories";
 
 const NavBarComponent = () => {
-
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products/categories")
-      .then((res) => setCategories(res.data))
-      .catch((error) => console.log(error));
-  }, []);
-
+  const { categories } = useAllCategories();
 
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" style={{height : "60px",}}>

@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
+import { useSingleCategory } from "../hooks/useCategories";
 
 const Category = () => {
-  const [products, setProducts] = useState([]);
-
   const { categoryId } = useParams();
-
-  useEffect(() => {
-    axios
-      .get(`https://dummyjson.com/products/category/${categoryId}`)
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => console.log(error));
-  }, [categoryId]);
+  const { products } = useSingleCategory(categoryId)
 
   return <ItemListContainer products={products} />;
 };

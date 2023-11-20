@@ -1,20 +1,9 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useAllProducts } from '../hooks/useProducts';
 import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
 
 const Home = () => {
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('https://dummyjson.com/products')
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => console.log(error))
-  }, []);
+  const { products } = useAllProducts(20); 
 
   return (
     <ItemListContainer products={products} />

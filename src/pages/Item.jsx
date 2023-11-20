@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSingleProduct } from "../hooks/useProducts";
 
 const Item = () => {
-  const [product, setProduct] = useState({});
   const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get(`https://dummyjson.com/products/${id}`)
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((error) => console.log(error));
-  }, [id]);
+  const { product } = useSingleProduct(id);
 
   return <ItemDetailContainer product={product} />;
 };
