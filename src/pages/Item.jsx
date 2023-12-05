@@ -5,7 +5,7 @@ import { ItemDetailContainer, LoaderComponent } from "../components";
 
 export const Item = () => {
   const { id } = useParams();
-  const { product, loading } = useSingleProduct(id);
+  const { product, loading, error } = useSingleProduct(id);
 
   return (
     <>

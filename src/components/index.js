@@ -1,3 +1,4 @@
+export * from "./ItemCount"
 export * from "./ItemDetailContainer"
 export * from "./ItemListContainer"
 export * from "./LoaderComponent"

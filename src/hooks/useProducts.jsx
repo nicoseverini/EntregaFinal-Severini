@@ -19,13 +19,24 @@ export const useAllProducts = (limit) => {
 export const useSingleProduct = (id) => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    getSingleProduct(id)
-      .then((res) => setProduct(res.data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    const timeoutId = setTimeout(() => {
+      getSingleProduct(id)
+        .then((res) => {
+          setProduct(res.data);
+        })
+        .catch((err) => setError(err))
+        .finally(() => setLoading(false));
+    }, 200);
+
+    return () => clearTimeout(timeoutId);
+
   }, [id]);
 
-  return { product, loading };
-}
+  return { product, loading, error };
+};
+
+
+
