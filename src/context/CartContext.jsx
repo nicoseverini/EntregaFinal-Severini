@@ -2,7 +2,6 @@ import React from 'react'
 
 export const CartContext = React.createContext();
 
-
 export const CartProvider = ({children}) => {
   const [qtyItems, setQtyItems] = React.useState(0)
 

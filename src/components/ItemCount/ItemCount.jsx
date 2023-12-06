@@ -11,10 +11,11 @@ export const ItemCount = () => {
   }
 
   const handleRemoveProduct = () => {
-    setCount(count - 1)
-    setQtyItems(count - 1)
+    if (count > 0){
+      setCount(count - 1)
+      setQtyItems(count - 1)
+    }
   }
-
 
   return (
     <div>
