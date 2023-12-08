@@ -19,7 +19,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

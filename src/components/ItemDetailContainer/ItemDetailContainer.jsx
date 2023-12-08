@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { ItemCount } from "../ItemCount";
+import { ItemCount } from "../Itemquantityselector";
 
 export const ItemDetailContainer = ({ product }) => {
   return (

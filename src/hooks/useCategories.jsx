@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { getAllCategories, getSingleCategory } from "../services";
+import { getAllCategories } from "../services";
+import { getDocs, getFirestore, collection, query, where} from "firebase/firestore";
 
 export const  useAllCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -13,16 +14,29 @@ export const  useAllCategories = () => {
   return { categories };
 };
 
-export const useSingleCategory = (categoryId) => {
+export const useSingleCategory = (collectionName, categoryId, fieldToFilter) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  const [error, setError] = useState(false);
+
   useEffect(() => {
-    getSingleCategory(categoryId)
-      .then((res) => setProducts(res.data.products))
-      .catch((error) => console.log(error))
+    const db = getFirestore();
+    const collectionRef = collection(db, collectionName);
+
+    const categoryQuery = query(collectionRef, where(fieldToFilter, "==", categoryId))
+
+    getDocs(categoryQuery)
+      .then((res) => {
+        const data = res.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(data);
+      })
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
+
   }, [categoryId]);
 
-  return { products, loading };
+  return { products, loading, error };
 };

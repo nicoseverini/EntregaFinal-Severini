@@ -5,7 +5,7 @@ import { ItemListContainer, LoaderComponent } from "../components";
 
 export const Category = () => {
   const { categoryId } = useParams();
-  const { products, loading } = useSingleCategory(categoryId)
+  const { products, loading } = useSingleCategory("products", categoryId, "category");
 
   return (
     <>
